@@ -528,10 +528,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `ui
 ]
 "18
-[; ;application.c: 18: uint32 password = 998877;
+[; ;application.c: 18: uint32 password = 123456;
 [v _password `ui ~T0 @X0 1 e ]
 [i _password
--> -> 998877 `l `ui
+-> -> 123456 `l `ui
 ]
 "19
 [; ;application.c: 19: uint8 l=0;
@@ -539,63 +539,69 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _l
 -> -> 0 `i `uc
 ]
-[v $root$_main `(v ~T0 @X0 0 e ]
 "20
-[; ;application.c: 20: int main(){
+[; ;application.c: 20: uint8 k=0;
+[v _k `uc ~T0 @X0 1 e ]
+[i _k
+-> -> 0 `i `uc
+]
+[v $root$_main `(v ~T0 @X0 0 e ]
+"21
+[; ;application.c: 21: int main(){
 [v _main `(i ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"21
-[; ;application.c: 21:     application_initialize();
-[e ( _application_initialize ..  ]
 "22
-[; ;application.c: 22:     ret = lcd_4bit_send_string_pos(&lcd_1,1,1,"Enter Password :");
+[; ;application.c: 22:     application_initialize();
+[e ( _application_initialize ..  ]
+"23
+[; ;application.c: 23:     ret = lcd_4bit_send_string_pos(&lcd_1,1,1,"Enter Password :");
 [e = _ret ( _lcd_4bit_send_string_pos (4 , , , -> &U _lcd_1 `*CS280 -> -> 1 `i `uc -> -> 1 `i `uc :s 1C ]
-"24
-[; ;application.c: 24:     while(1)
-[e :U 284 ]
 "25
-[; ;application.c: 25:     {
-{
+[; ;application.c: 25:     while(1)
+[e :U 284 ]
 "26
-[; ;application.c: 26:         ret = keypad_get_value(&kp1,&value);
-[e = _ret ( _keypad_get_value (2 , -> &U _kp1 `*CS279 &U _value ]
+[; ;application.c: 26:     {
+{
 "27
-[; ;application.c: 27:         _delay((unsigned long)((200)*(4000000UL/4000.0)));
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+[; ;application.c: 27:         ret = keypad_get_value(&kp1,&value);
+[e = _ret ( _keypad_get_value (2 , -> &U _kp1 `*CS279 &U _value ]
 "28
-[; ;application.c: 28:         if(6 == number_of_digits)
-[e $ ! == -> 6 `i -> _number_of_digits `i 286  ]
+[; ;application.c: 28:         _delay((unsigned long)((200)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
 "29
-[; ;application.c: 29:         {
-{
+[; ;application.c: 29:         if(6 == number_of_digits)
+[e $ ! == -> 6 `i -> _number_of_digits `i 286  ]
 "30
-[; ;application.c: 30:             if(entered_password == password)
-[e $ ! == _entered_password _password 287  ]
+[; ;application.c: 30:         {
+{
 "31
-[; ;application.c: 31:             {
-{
+[; ;application.c: 31:             if(entered_password == password)
+[e $ ! == _entered_password _password 287  ]
 "32
-[; ;application.c: 32:                 value=0;
-[e = _value -> -> 0 `i `uc ]
-"33
-[; ;application.c: 33:                 if(l==0)
-[e $ ! == -> _l `i -> 0 `i 288  ]
-"34
-[; ;application.c: 34:                 {
+[; ;application.c: 32:             {
 {
+"33
+[; ;application.c: 33:                 value=0;
+[e = _value -> -> 0 `i `uc ]
+"34
+[; ;application.c: 34:                 if(l==0)
+[e $ ! == -> _l `i -> 0 `i 288  ]
 "35
-[; ;application.c: 35:                     ret = lcd_4bit_send_command(&lcd_1,0x01);
-[e = _ret ( _lcd_4bit_send_command (2 , -> &U _lcd_1 `*CS280 -> -> 1 `i `uc ]
+[; ;application.c: 35:                 {
+{
 "36
-[; ;application.c: 36:                     ret = lcd_4bit_send_string_pos(&lcd_1,1,7,"Welcome");
-[e = _ret ( _lcd_4bit_send_string_pos (4 , , , -> &U _lcd_1 `*CS280 -> -> 1 `i `uc -> -> 7 `i `uc :s 2C ]
+[; ;application.c: 36:                     ret = lcd_4bit_send_command(&lcd_1,0x01);
+[e = _ret ( _lcd_4bit_send_command (2 , -> &U _lcd_1 `*CS280 -> -> 1 `i `uc ]
 "37
-[; ;application.c: 37:                     _delay((unsigned long)((1000)*(4000000UL/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+[; ;application.c: 37:                     ret = lcd_4bit_send_string_pos(&lcd_1,1,7,"Welcome");
+[e = _ret ( _lcd_4bit_send_string_pos (4 , , , -> &U _lcd_1 `*CS280 -> -> 1 `i `uc -> -> 7 `i `uc :s 2C ]
 "38
-[; ;application.c: 38:                     ret = lcd_4bit_send_command(&lcd_1,0x01);
+[; ;application.c: 38:                     _delay((unsigned long)((1000)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"39
+[; ;application.c: 39:                     ret = lcd_4bit_send_command(&lcd_1,0x01);
 [e = _ret ( _lcd_4bit_send_command (2 , -> &U _lcd_1 `*CS280 -> -> 1 `i `uc ]
 "40
 [; ;application.c: 40:                     l=1;
@@ -848,108 +854,124 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 300 ]
 [e :U 299 ]
 [e :U 297 ]
+"120
+[; ;application.c: 120:             if(k==0)
+[e $ ! == -> _k `i -> 0 `i 301  ]
 "121
-[; ;application.c: 121:         }
+[; ;application.c: 121:             {
+{
+"122
+[; ;application.c: 122:                 ret = led_turn_on(&led_2);
+[e = _ret ( _led_turn_on (1 -> &U _led_2 `*CS274 ]
+"123
+[; ;application.c: 123:                 k=1;
+[e = _k -> -> 1 `i `uc ]
+"124
+[; ;application.c: 124:             }
+}
+[e :U 301 ]
+"126
+[; ;application.c: 126:         }
 }
 [e :U 295 ]
-"123
-[; ;application.c: 123:     }
+"128
+[; ;application.c: 128:     }
 }
 [e :U 283 ]
 [e $U 284  ]
 [e :U 285 ]
-"125
-[; ;application.c: 125:     return (0);
+"130
+[; ;application.c: 130:     return (0);
 [e ) -> 0 `i ]
 [e $UE 282  ]
-"126
-[; ;application.c: 126: }
-[e :UE 282 ]
-}
-"128
-[; ;application.c: 128: void application_initialize (void)
-[v _application_initialize `(v ~T0 @X0 1 ef ]
-"129
-[; ;application.c: 129: {
-{
-[e :U _application_initialize ]
-[f ]
-"130
-[; ;application.c: 130:     ecu_initialize();
-[e ( _ecu_initialize ..  ]
 "131
 [; ;application.c: 131: }
-[e :UE 301 ]
+[e :UE 282 ]
 }
 "133
-[; ;application.c: 133: void loading()
-[v _loading `(v ~T0 @X0 1 ef ]
+[; ;application.c: 133: void application_initialize (void)
+[v _application_initialize `(v ~T0 @X0 1 ef ]
 "134
 [; ;application.c: 134: {
 {
-[e :U _loading ]
+[e :U _application_initialize ]
 [f ]
 "135
-[; ;application.c: 135:     Std_ReturnType ret = (Std_ReturnType)0x00;
+[; ;application.c: 135:     ecu_initialize();
+[e ( _ecu_initialize ..  ]
+"136
+[; ;application.c: 136: }
+[e :UE 302 ]
+}
+"138
+[; ;application.c: 138: void loading()
+[v _loading `(v ~T0 @X0 1 ef ]
+"139
+[; ;application.c: 139: {
+{
+[e :U _loading ]
+[f ]
+"140
+[; ;application.c: 140:     Std_ReturnType ret = (Std_ReturnType)0x00;
 [v _ret `uc ~T0 @X0 1 a ]
 [e = _ret -> -> 0 `i `uc ]
-"137
-[; ;application.c: 137:     ret = lcd_4bit_send_command(&lcd_1,0x01);
+"142
+[; ;application.c: 142:     ret = lcd_4bit_send_command(&lcd_1,0x01);
 [e = _ret ( _lcd_4bit_send_command (2 , -> &U _lcd_1 `*CS280 -> -> 1 `i `uc ]
-"138
-[; ;application.c: 138:     for(int j=0;j<2;j++)
+"143
+[; ;application.c: 143:     for(int j=0;j<2;j++)
 {
 [v _j `i ~T0 @X0 1 a ]
 [e = _j -> 0 `i ]
-[e $ < _j -> 2 `i 303  ]
-[e $U 304  ]
-[e :U 303 ]
-"139
-[; ;application.c: 139:     {
+[e $ < _j -> 2 `i 304  ]
+[e $U 305  ]
+[e :U 304 ]
+"144
+[; ;application.c: 144:     {
 {
-"140
-[; ;application.c: 140:         ret = lcd_4bit_send_string_pos(&lcd_1,1,1,"Please Wait");
+"145
+[; ;application.c: 145:         ret = lcd_4bit_send_string_pos(&lcd_1,1,1,"Please Wait");
 [e = _ret ( _lcd_4bit_send_string_pos (4 , , , -> &U _lcd_1 `*CS280 -> -> 1 `i `uc -> -> 1 `i `uc :s 11C ]
-"141
-[; ;application.c: 141:         for(int i=11;i<=15;i++)
+"146
+[; ;application.c: 146:         for(int i=11;i<=15;i++)
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 11 `i ]
-[e $ <= _i -> 15 `i 306  ]
-[e $U 307  ]
-[e :U 306 ]
-"142
-[; ;application.c: 142:        {
+[e $ <= _i -> 15 `i 307  ]
+[e $U 308  ]
+[e :U 307 ]
+"147
+[; ;application.c: 147:        {
 {
-"143
-[; ;application.c: 143:            ret = lcd_4bit_send_char_pos(&lcd_1,1,i,'.');
+"148
+[; ;application.c: 148:            ret = lcd_4bit_send_char_pos(&lcd_1,1,i,'.');
 [e = _ret ( _lcd_4bit_send_char_pos (4 , , , -> &U _lcd_1 `*CS280 -> -> 1 `i `uc -> _i `uc -> -> 46 `ui `uc ]
-"144
-[; ;application.c: 144:            _delay((unsigned long)((200)*(4000000UL/4000.0)));
+"149
+[; ;application.c: 149:            _delay((unsigned long)((200)*(4000000UL/4000.0)));
 [e ( __delay (1 -> * -> -> 200 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
-"145
-[; ;application.c: 145:        }
+"150
+[; ;application.c: 150:        }
 }
 [e ++ _i -> 1 `i ]
-[e $ <= _i -> 15 `i 306  ]
-[e :U 307 ]
+[e $ <= _i -> 15 `i 307  ]
+[e :U 308 ]
 }
-"146
-[; ;application.c: 146:         _delay((unsigned long)((1000)*(4000000UL/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
-"147
-[; ;application.c: 147:         ret = lcd_4bit_send_command(&lcd_1,0x01);
+"151
+[; ;application.c: 151:         _delay((unsigned long)((400)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"152
+[; ;application.c: 152:         ret = lcd_4bit_send_command(&lcd_1,0x01);
 [e = _ret ( _lcd_4bit_send_command (2 , -> &U _lcd_1 `*CS280 -> -> 1 `i `uc ]
-"148
-[; ;application.c: 148:     }
+"153
+[; ;application.c: 153:     }
 }
 [e ++ _j -> 1 `i ]
-[e $ < _j -> 2 `i 303  ]
-[e :U 304 ]
+[e $ < _j -> 2 `i 304  ]
+[e :U 305 ]
 }
-"150
-[; ;application.c: 150: }
-[e :UE 302 ]
+"155
+[; ;application.c: 155: }
+[e :UE 303 ]
 }
 [a 5C 51 45 69 120 105 116 0 ]
 [a 11C 80 108 101 97 115 101 32 87 97 105 116 0 ]

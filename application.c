@@ -15,8 +15,9 @@ uint8 i=0;
 uint8 number_of_digits=0;
 uint8 entered_password_arr[11];
 uint32 entered_password=0;
-uint32 password = 998877;
+uint32 password = 123456;
 uint8 l=0;
+uint8 k=0;
 int main(){
     application_initialize();
     ret = lcd_4bit_send_string_pos(&lcd_1,1,1,"Enter Password :");
@@ -36,7 +37,6 @@ int main(){
                     ret = lcd_4bit_send_string_pos(&lcd_1,1,7,"Welcome");
                     __delay_ms(1000);
                     ret = lcd_4bit_send_command(&lcd_1,LCD_CLEAR_DISPLAY);
-
                     l=1;
                 }
                 ret = lcd_4bit_send_string_pos(&lcd_1,1,1,"1-Open The Lock");
@@ -117,6 +117,11 @@ int main(){
                 i++;
             }
             
+            if(k==0)
+            {
+                ret = led_turn_on(&led_2);
+                k=1;
+            }
                  
         }
         
@@ -143,7 +148,7 @@ void loading()
            ret = lcd_4bit_send_char_pos(&lcd_1,1,i,'.');
            __delay_ms(200);
        }
-        __delay_ms(1000);
+        __delay_ms(400);
         ret = lcd_4bit_send_command(&lcd_1,LCD_CLEAR_DISPLAY);
     }
     
